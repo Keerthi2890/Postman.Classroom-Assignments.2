@@ -1,0 +1,289 @@
+{
+	"info": {
+		"_postman_id": "8bf3d2da-f904-4da2-870f-fc12c3a7a68a",
+		"name": "Running Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23848780"
+	},
+	"item": [
+		{
+			"name": "SN-Incident Creation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is Success\", function () {\r",
+							"  //pm.response.to.have.status(201);\r",
+							"  pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+							"});\r",
+							"\r",
+							"Resp = pm.response.json();\r",
+							"sysidd = Resp.result.sys_id;\r",
+							"pm.globals.set(\"G_Sysid\",sysidd);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "B94ug@z-HmKD",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"short_description\":\"{{shortDescription}}\",\r\n    \"description\": \"{{Description}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURI}}/{{table}}",
+					"host": [
+						"{{BaseURI}}"
+					],
+					"path": [
+						"{{table}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetRequestBySysid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "B94ug@z-HmKD",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURI}}/{{table}}/{{G_Sysid}}",
+					"host": [
+						"{{BaseURI}}"
+					],
+					"path": [
+						"{{table}}",
+						"{{G_Sysid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PutRequest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "B94ug@z-HmKD",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"short_description\":\"{{shortDescription_Update}}\",\r\n    \"description\": \"{{Description_Update}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURI}}/{{table}}/{{G_Sysid}}",
+					"host": [
+						"{{BaseURI}}"
+					],
+					"path": [
+						"{{table}}",
+						"{{G_Sysid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdatePatchRequest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURI}}/{{table}}/{{G_Sysid}}",
+					"host": [
+						"{{BaseURI}}"
+					],
+					"path": [
+						"{{table}}",
+						"{{G_Sysid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "B94ug@z-HmKD",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURI}}/{{table}}/{{G_Sysid}}",
+					"host": [
+						"{{BaseURI}}"
+					],
+					"path": [
+						"{{table}}",
+						"{{G_Sysid}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "username",
+				"value": "{{uname}}",
+				"type": "string"
+			},
+			{
+				"key": "password",
+				"value": "B94ug@z-HmKD",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "table",
+			"value": "api/now/table/incident",
+			"type": "string"
+		}
+	]
+}
